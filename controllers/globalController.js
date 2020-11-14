@@ -1,5 +1,5 @@
 const accountsModel = require('../models/accounts.js');
-const accountHoldersModel = require('../models/accountHolders.js');
+const accountHoldersModel = require('../models/accountholders.js');
 //const { json } = require('express');
 
 

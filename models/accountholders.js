@@ -1,10 +1,9 @@
 'use strict';
-
 const {
   Model
 } = require('sequelize');
-module.exports  = (sequelize, DataTypes) => {
-  class Accounts extends Model {
+module.exports = (sequelize, DataTypes) => {
+  class AccountHolders extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -12,26 +11,30 @@ module.exports  = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Accounts.belongsToMany(models.AccountHolders, {
+      AccountHolders.belongsToMany(models.Accounts, {
         through: models.AccountsAccountHolders
       })
     }
   };
-  Accounts.init({
+  AccountHolders.init({
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
       autoIncrement: true
     },
-    balance: {
-      type: DataTypes.FLOAT,
-      allowNull: true,
-      defaultValue: 0
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
     }
   }, {
     sequelize,
-    modelName: 'Accounts',
+    modelName: 'AccountHolders',
   });
-  return Accounts;
+  return AccountHolders;
 };

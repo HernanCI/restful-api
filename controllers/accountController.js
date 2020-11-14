@@ -1,7 +1,8 @@
-const accountsModel = require('../models/accounts.js');
+const accountsModel = require('../modelsFunctions/accounts.js');
 
-const getAllAccounts = function (req, res) {
-  let allAccounts = accountsModel.findAll();
+const getAllAccounts = async function (req, res) {
+  let allAccounts = await accountsModel.findAll();
+
   if(allAccounts){
       res.status(200).json(allAccounts);
   }else{
@@ -9,8 +10,8 @@ const getAllAccounts = function (req, res) {
   }
 };
 
-const getAccountByAccountId = function (req, res) {
-  let accountId = accountsModel.findById(req.params.id);
+const getAccountByAccountId = async function (req, res) {
+  let accountId = await accountsModel.findById(req.params.id);
   if (accountId) {
     res.status(200).json(accountId);
   } else {

@@ -1,4 +1,4 @@
-const accountHolderModel = require('../models/accountHolders.js');
+const accountHolderModel = require('../models/accountholders.js');
 
 const getAllAccountHolders = function(req,res) {
     let accountHolders = accountHolderModel.findAll();
