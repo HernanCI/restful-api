@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.Accounts.belongsToMany(models.AccountHolders, { through: AccountsAccountHolders });
-      models.AccountHolders.belongsToMany(models.Accounts, { through: AccountsAccountHolders });
+      models.Accounts.belongsToMany(models.AccountHolders, { through: AccountsAccountHolders , onDelete: 'cascade' });
+      models.AccountHolders.belongsToMany(models.Accounts, { through: AccountsAccountHolders , onDelete: 'cascade' });
       
     }
   };
@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      allowNull: false,
+      allowNull: true,
       autoIncrement: true
     },
     accountId: {

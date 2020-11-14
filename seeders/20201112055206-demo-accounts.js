@@ -5,7 +5,7 @@ module.exports = {
     await queryInterface.bulkInsert('Accounts', [
       {
         id: 1,
-        balance: 3000.00,
+        balance: 0,
         createdAt: new Date(),
         updatedAt: new Date(),
       },

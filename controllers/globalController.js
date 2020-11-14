@@ -1,6 +1,6 @@
 const accountsModel = require('../models/accounts.js');
 const accountHoldersModel = require('../models/accountholders.js');
-//const { json } = require('express');
+
 
 
 const deleteAccountById = function (req, res) {

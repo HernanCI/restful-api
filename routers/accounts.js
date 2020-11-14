@@ -18,7 +18,7 @@ router.patch('/withdraw/:id', accountsController.withdrawById);
 router.patch('/:id1/:id2', accountsController.transferByIds);
 
 //Account delete
-router.delete('/:id', globalController.deleteAccountById);
+router.delete('/:id', accountsController.deleteAccountById);
 
 //Account add (POST)
 router.post('/',accountsController.addAccount);

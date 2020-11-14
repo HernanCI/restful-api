@@ -12,7 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       AccountHolders.belongsToMany(models.Accounts, {
-        through: models.AccountsAccountHolders
+        through: models.AccountsAccountHolders,
+        onDelete: 'cascade'
       })
     }
   };

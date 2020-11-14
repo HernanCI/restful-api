@@ -19,8 +19,8 @@ const getAccountByAccountId = async function (req, res) {
   }
 };
 
-const depositById = function (req,res){
-  let account = accountsModel.depositById(req.params.id,req.body);
+const depositById = async function (req,res){
+  let account = await accountsModel.depositById(req.params.id,req.body);
   if(account){
     res.status(200).json(account);
   }else{
@@ -28,8 +28,8 @@ const depositById = function (req,res){
   }
 }
 
-const withdrawById = function (req,res){
-  let account = accountsModel.withdrawById(req.params.id,req.body);
+const withdrawById = async function (req,res){
+  let account = await accountsModel.withdrawById(req.params.id,req.body);
   if(account){
     res.status(200).json(account);
   }else{
@@ -37,8 +37,8 @@ const withdrawById = function (req,res){
   }
 }
 
-const transferByIds = function (req, res){
-  let transferAccounts = accountsModel.transferByIds(req.params.id1,req.params.id2, req.body);
+const transferByIds = async function (req, res){
+  let transferAccounts = await accountsModel.transferByIds(req.params.id1,req.params.id2, req.body);
   if(transferAccounts){
     res.status(200).json(transferAccounts);
   }else{
@@ -46,8 +46,18 @@ const transferByIds = function (req, res){
   }
 }
 
-const addAccount = function (req, res){
-  let newAccount = accountsModel.addAccount(req.body);
+
+const deleteAccountById = async function (req, res) {
+  let account = await accountsModel.deleteAccount(req.params.id);
+  if (account) {
+      res.status(200).json(account);
+  } else {
+      res.status(404).json({ error: 'id not found' });
+  }
+}
+
+const addAccount = async function (req, res){
+  let newAccount = await accountsModel.addAccount(req.body);
   if(newAccount){
     res.status(200).json(newAccount);
   }else{
@@ -55,18 +65,21 @@ const addAccount = function (req, res){
   }
 }
 
-const getBalance = function (req,res){
-  let accountBalance = accountsModel.getBalance(req.params.id);
+const getBalance = async function (req,res){
+  let accountBalance = await accountsModel.getBalance(req.params.id);
   if(accountBalance){
     res.status(200).json(accountBalance);
   }else{
     res.status(404).json({error:'id not found'});
   }
 }
+
+
 exports.getAllAccounts = getAllAccounts;
 exports.getAccountByAccountId = getAccountByAccountId;
 exports.depositById = depositById;
 exports.withdrawById = withdrawById; 
 exports.transferByIds = transferByIds; 
+exports.deleteAccountById = deleteAccountById;
 exports.addAccount = addAccount;
 exports.getBalance = getBalance;
