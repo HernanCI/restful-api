@@ -1,7 +1,7 @@
-const accountHolderModel = require('../models/accountholders.js');
+const accountHolderModel = require('../modelsFunctions/accountHolders.js');
 
-const getAllAccountHolders = function(req,res) {
-    let accountHolders = accountHolderModel.findAll();
+const getAllAccountHolders = async function(req,res) {
+    let accountHolders = await accountHolderModel.findAll();
     if(accountHolders){
         res.status(200).json(accountHolders);
     }else{
@@ -9,8 +9,8 @@ const getAllAccountHolders = function(req,res) {
     }
 };
 
-const getAccountHolderByAccountHolderId = function(req,res){
-    let accountHolderId = accountHolderModel.findById(req.params.id);
+const getAccountHolderByAccountHolderId = async function(req,res){
+    let accountHolderId = await accountHolderModel.findById(req.params.id);
     if(accountHolderId){
         res.status(200).json(accountHolderId);
     }else{
@@ -18,8 +18,8 @@ const getAccountHolderByAccountHolderId = function(req,res){
     }
 }
 
-const getAccountHolderByName = function (req,res) {
-    let accountHolderName = accountHolderModel.findByName(req.params.name);
+const getAccountHolderByName = async function (req,res) {
+    let accountHolderName = await accountHolderModel.findByName(req.params.name);
     if(accountHolderName){
         res.status(200).json(accountHolderName);
     }else{
@@ -27,8 +27,8 @@ const getAccountHolderByName = function (req,res) {
     }
 }
 
-const getAccountHolderByEmail = function (req,res){
-    let accountHolderEmail = accountHolderModel.findByEmail(req.params.email);
+const getAccountHolderByEmail = async function (req,res){
+    let accountHolderEmail = await accountHolderModel.findByEmail(req.params.email);
     if(accountHolderEmail){
         res.status(200).json(accountHolderEmail);
     }else{
@@ -36,8 +36,8 @@ const getAccountHolderByEmail = function (req,res){
     }
 }
 
-const updateAccountHolderById = function (req,res){
-    let accountHolder = accountHolderModel.save(req.params.id,req.body);
+const updateAccountHolderById = async function (req,res){
+    let accountHolder = await accountHolderModel.save(req.params.id,req.body);
     if(accountHolder){
         res.status(200).json(accountHolder);
     }else{
@@ -45,18 +45,28 @@ const updateAccountHolderById = function (req,res){
     }
 }
 
+const deleteAccountHolderById = async function (req,res){
+    let accountHolder = await accountHolderModel.deleteAccountHolderById(req.params.id);
+    if(accountHolder){
+        res.status(200).json(accountHolder);
+    }else{
+        res.status(404).json({error: 'id not found'});
+    }
+}
 
-const addAccountHolder = function (req,res){
-    let accountHolder = accountHolderModel.add(req.body);
+const addAccountHolder = async function (req,res){
+    let accountHolder = await accountHolderModel.add(req.body);
     if(accountHolder){
         res.status(200).json(accountHolder);
     }else{
         res.status(404).json({error:'data not found'});
     }
 }
+
 exports.getAllAccountHolders = getAllAccountHolders;
 exports.getAccountHolderByAccountHolderId = getAccountHolderByAccountHolderId;
 exports.getAccountHolderByName = getAccountHolderByName;
 exports.getAccountHolderByEmail = getAccountHolderByEmail;
 exports.updateAccountHolderById = updateAccountHolderById; 
+exports.deleteAccountHolderById = deleteAccountHolderById;
 exports.addAccountHolder = addAccountHolder;

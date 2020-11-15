@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const accountHoldersController = require('../controllers/accountHolderController.js');
-const globalController = require('../controllers/globalController.js');
 
 //AccountHolders getters
 router.get('/', accountHoldersController.getAllAccountHolders);
@@ -13,7 +12,7 @@ router.get('/email/:email', accountHoldersController.getAccountHolderByEmail);
 router.patch('/:id', accountHoldersController.updateAccountHolderById);
 
 //AccountHolders delete
-router.delete('/:id',globalController.deleteAccountHolderById); 
+router.delete('/:id',accountHoldersController.deleteAccountHolderById); 
 
 //AccountHolders add
 router.post('/', accountHoldersController.addAccountHolder);
