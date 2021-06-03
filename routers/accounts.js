@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const accountsController = require('../controllers/accountController.js');
-const globalController = require('../controllers/globalController.js');
 
 //Account getters
 router.get('/', accountsController.getAllAccounts);
